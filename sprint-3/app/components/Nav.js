@@ -1,5 +1,5 @@
 import logo from "../img/generico/logo.svg";
-import Link from "next/link";
+
 
 export default function Navbar() {
   return (
@@ -10,14 +10,13 @@ export default function Navbar() {
           alt="Interface of QuoteKit application"
           className="logo"
         />
-        <Link href="/login" className="nav-ref">
-          Login
-        </Link>
-        <Link href="/cadastro" className="btn btn-primary">
-          Cadastro
-        </Link>
+        <a href="#" className="nav-ref  ">
+          BOTAO 1
+        </a>
+        <a href="#" className="btn btn-primary">
+          BOTAO 2
+        </a>
       </div>
     </nav>
   );
 }
- 
