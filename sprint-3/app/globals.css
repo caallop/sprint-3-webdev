@@ -106,7 +106,6 @@ body {
 /* ===== SEÇÃO HERO ===== */
 .principal {
   max-width: 900px;
-  margin: 0 auto;
   padding: 9rem 1.5rem 4rem;
   text-align: center;
   display: flex;
