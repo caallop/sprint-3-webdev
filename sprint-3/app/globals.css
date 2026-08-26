@@ -27,6 +27,7 @@ body {
 
 .container {
   max-width: 1200px;
+  margin: auto;
 }
 
 /* ===== NAVBAR ===== */
@@ -38,7 +39,6 @@ body {
 }
 
 .nav-container {
-  margin: 0 auto;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -191,4 +191,54 @@ footer {
 .icon {
   font-size: 1.25rem;
   font-weight: 700;
+}
+
+/*AQUI VAI CSS DAS OUTRAS PAGINAS*/
+
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  padding: 30px;
+  gap: 50px;
+}
+
+.entrada {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3%;
+}
+
+.entrada label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  border-radius: 8px;
+}
+
+.entrada button {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+
+  padding: 0.8rem;
+  margin-top: 1rem;
+  margin-left: 0.5rem;
+  background-color: var(--primary-color);
+
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  
+  transition: background-color 0.2s;
+}
+
+.entrada button:hover {
+  background-color: var(--primary-hover);
 }
