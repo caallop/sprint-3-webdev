@@ -1,58 +1,75 @@
-'use client';
-import React, { useEffect } from 'react';
+"use client";
+import React, { useEffect, useState } from "react";
 
 export default function Main() {
+  const [usuarioLogado, setUsuarioLogado] = useState("");
 
   useEffect(() => {
-    const infoBotao = document.querySelector('.info_botao');
-    const info = document.querySelector('.info');
-    const flash = document.querySelector('.flash');
-    const flashImg = document.querySelector('.flash img');
-    const timer = document.querySelector('.timer');
-    const foto = document.querySelector('.foto');
+    // Isolamos a leitura do Storage em uma função.
+    // Isso ajuda o React a entender que a ação está encapsulada e não
+    // vai causar um loop de atualizações na tela.
+    const carregarDadosDoNavegador = () => {
+      const emailSalvo = localStorage.getItem("raluguva_email");
 
-    if (info) info.style.display = 'none';
+      if (emailSalvo) {
+        const nomeCurto = emailSalvo.split("@")[0];
+        setUsuarioLogado(nomeCurto);
+      }
+    };
+
+    carregarDadosDoNavegador();
+  }, []);
+
+  useEffect(() => {
+    const infoBotao = document.querySelector(".info_botao");
+    const info = document.querySelector(".info");
+    const flash = document.querySelector(".flash");
+    const flashImg = document.querySelector(".flash img");
+    const timer = document.querySelector(".timer");
+    const foto = document.querySelector(".foto");
+
+    if (info) info.style.display = "none";
 
     const tirarFoto = () => {
-      alert('Foto tirada!');
-      criarNotificacao('Foto salva na galeria');
+      alert("Foto tirada!");
+      criarNotificacao("Foto salva na galeria");
     };
 
     const handleInfoClick = () => {
       if (info) {
-        info.style.display = info.style.display === 'none' ? 'flex' : 'none';
+        info.style.display = info.style.display === "none" ? "flex" : "none";
       }
     };
-    if (infoBotao) infoBotao.addEventListener('click', handleInfoClick);
+    if (infoBotao) infoBotao.addEventListener("click", handleInfoClick);
 
     const handleFlashClick = () => {
-      document.body.classList.toggle('flashAtivo');
-      if (document.body.classList.contains('flashAtivo')) {
+      document.body.classList.toggle("flashAtivo");
+      if (document.body.classList.contains("flashAtivo")) {
         if (flashImg) flashImg.src = "/img_sp2/flash.png";
-        alert('Flash ativado!');
+        alert("Flash ativado!");
       } else {
         if (flashImg) flashImg.src = "/img_sp2/sem_flash.png";
-        alert('Flash desativado!');
+        alert("Flash desativado!");
       }
     };
-    if (flash) flash.addEventListener('click', handleFlashClick);
+    if (flash) flash.addEventListener("click", handleFlashClick);
 
     const handleTimerClick = () => {
-      alert('Foto será tirada em 3 segundos!');
+      alert("Foto será tirada em 3 segundos!");
       setTimeout(() => {
         tirarFoto();
       }, 3000);
     };
-    if (timer) timer.addEventListener('click', handleTimerClick);
+    if (timer) timer.addEventListener("click", handleTimerClick);
 
     const handleFotoClick = () => {
       tirarFoto();
     };
-    if (foto) foto.addEventListener('click', handleFotoClick);
+    if (foto) foto.addEventListener("click", handleFotoClick);
 
     function criarNotificacao(texto) {
-      const notificacao = document.createElement('div');
-      notificacao.classList.add('notificacao');
+      const notificacao = document.createElement("div");
+      notificacao.classList.add("notificacao");
       notificacao.innerText = texto;
       document.body.appendChild(notificacao);
       setTimeout(() => {
@@ -61,17 +78,20 @@ export default function Main() {
     }
 
     return () => {
-      if (infoBotao) infoBotao.removeEventListener('click', handleInfoClick);
-      if (flash) flash.removeEventListener('click', handleFlashClick);
-      if (timer) timer.removeEventListener('click', handleTimerClick);
-      if (foto) foto.removeEventListener('click', handleFotoClick);
+      if (infoBotao) infoBotao.removeEventListener("click", handleInfoClick);
+      if (flash) flash.removeEventListener("click", handleFlashClick);
+      if (timer) timer.removeEventListener("click", handleTimerClick);
+      if (foto) foto.removeEventListener("click", handleFotoClick);
     };
   }, []);
 
   return (
     <main className="principal container">
+      {/* 4. Renderizamos o nome dinamicamente no Badge */}
       <div className="badge">
-        <span></span> se quiser, um espaço KKKKKKK example
+        {usuarioLogado
+          ? `Olá! Bem-vindo(a), ${usuarioLogado}`
+          : "Conheça a nossa solução"}
       </div>
 
       <h1 className="principal-titulo">
@@ -79,9 +99,7 @@ export default function Main() {
         <span className="principal-apoio">apoio titulo example</span>
       </h1>
 
-      <p className="principal-subtexto">
-        subtexto example
-      </p>
+      <p className="principal-subtexto">subtexto example</p>
 
       <div className="principal-botoes">
         <a href="#" className="btn btn-primary btn-large">
@@ -94,10 +112,7 @@ export default function Main() {
 
       <div className="image-wrapper">
         <div className="moldura-celular-codigo">
-          
           <div className="pagina-antiga">
-            
-            {/* */}
             <header className="header-antigo">
               <div className="opcoes">
                 <button className="flash" aria-label="ativar o flash">
@@ -112,28 +127,41 @@ export default function Main() {
               </div>
             </header>
 
-            <div className="info" style={{ background: '#fff', padding: '10px', margin: '10px', borderRadius: '8px' }}>
-              <p>Painel de descoberta / Sprint 2 integrada!</p>
+            <div className="info">
+              <div>
+                <p>flash:</p>
+                <p> Ativa a função de flash da câmera.</p>
+              </div>
+              <div>
+                <p>temporizador:</p>
+                <p> Ativa um timer de até três segundos.</p>
+              </div>
+              <div>
+                <p>olho:</p>
+                <p> Ativa a função de acessibilidade para ver sons.</p>
+              </div>
+              <div>
+                <p>galeria:</p>
+                <p> vê as fotos</p>
+              </div>
             </div>
 
-              <footer className="footer-antigo">
-                <div className="botoes-inferiores">
-                  <button className="botao-baixo" aria-label="acessibilidade">
-                    <img src="/img_sp2/acessibilidade.png" alt="acessibilidade" />
-                  </button>
-                  
-                  <button className="foto botao-baixo" aria-label="tirar foto">
-                    <img src="/img_sp2/botao_foto.png" alt="tirar foto" />
-                  </button>
-                  
-                  <button className="botao-baixo" aria-label="galeria">
-                    <img src="/img_sp2/galeria.png" alt="galeria" />
-                  </button>
-                </div>
-              </footer>
+            <footer className="footer-antigo">
+              <div className="botoes-inferiores">
+                <button className="botao-baixo" aria-label="acessibilidade">
+                  <img src="/img_sp2/acessibilidade.png" alt="acessibilidade" />
+                </button>
 
+                <button className="foto botao-baixo" aria-label="tirar foto">
+                  <img src="/img_sp2/botao_foto.png" alt="tirar foto" />
+                </button>
+
+                <button className="botao-baixo" aria-label="galeria">
+                  <img src="/img_sp2/galeria.png" alt="galeria" />
+                </button>
+              </div>
+            </footer>
           </div>
-
         </div>
       </div>
     </main>

@@ -5,14 +5,18 @@ export default function Navbar() {
   return (
     <nav className="navbar ">
       <div className="nav-container container">
-        <img
-          src={logo.src}
-          alt="Interface of QuoteKit application"
-          className="logo"
-        />
+        <Link href="/#" className="nav-ref">
+          <img
+            src={logo.src}
+            alt="Interface of QuoteKit application"
+            className="logo"
+          />
+        </Link>
+
         <Link href="/login" className="nav-ref">
           Login
         </Link>
+
         <Link href="/cadastro" className="btn btn-primary">
           Cadastro
         </Link>
