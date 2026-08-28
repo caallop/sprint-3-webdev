@@ -1,0 +1,116 @@
+.moldura-celular-codigo {
+    width: 600px;
+    height: 340px;
+    background-image: url('/img_sp2/background.jpg');
+    background-size: cover;
+    background-position: center;
+    border: 14px solid #1a1a1a;
+    border-radius: 35px;
+    margin: 0 auto;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+
+.pagina-antiga {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+
+
+.header-antigo {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+
+.header-antigo .opcoes {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+}
+
+.header-antigo button {
+    width: 34px;
+    height: 34px;
+    padding: 4px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.7);
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.header-antigo button:hover {
+    transform: scale(1.1);
+    background: white;
+}
+
+.header-antigo img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+}
+
+/* ===== HISTÓRICO DE LOGIN ===== */
+
+
+.info {
+    background-color: #ffffff;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 8px;
+    gap: 10px;
+    padding: 20px;
+}
+
+.footer-antigo .botoes-inferiores {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 16px;
+}
+
+.footer-antigo .botoes-inferiores .botao-baixo {
+    width: 34px;
+    height: 34px;
+    padding: 4px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.7);
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.footer-antigo .botoes-inferiores .botao-baixo:hover {
+    transform: scale(1.1);
+    background: white;
+}
+
+.footer-antigo .botoes-inferiores .botao-baixo img {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+}

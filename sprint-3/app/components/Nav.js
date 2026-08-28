@@ -13,12 +13,8 @@ export default function Navbar() {
           />
         </Link>
 
-        <Link href="/login" className="nav-ref">
-          Login
-        </Link>
-
-        <Link href="/cadastro" className="btn btn-primary">
-          Cadastro
+        <Link href="/login" className="btn btn-primary">
+          Conta
         </Link>
       </div>
     </nav>

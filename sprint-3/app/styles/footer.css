@@ -1,0 +1,35 @@
+footer {
+  color: #94a3b8;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.footer-box {
+  padding: 5rem 1.5rem;
+  text-align: center;
+  background-color: #fafafa;
+  border-top: 1px solid var(--border-color);
+}
+
+.footer-titulo {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 2rem;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 3rem;
+}
+
+.icon {
+  font-size: 1.25rem;
+  font-weight: 700;
+}

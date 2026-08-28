@@ -5,9 +5,6 @@ export default function Main() {
   const [usuarioLogado, setUsuarioLogado] = useState("");
 
   useEffect(() => {
-    // Isolamos a leitura do Storage em uma função.
-    // Isso ajuda o React a entender que a ação está encapsulada e não
-    // vai causar um loop de atualizações na tela.
     const carregarDadosDoNavegador = () => {
       const emailSalvo = localStorage.getItem("raluguva_email");
 
@@ -88,11 +85,10 @@ export default function Main() {
   return (
     <main className="principal container">
       {/* 4. Renderizamos o nome dinamicamente no Badge */}
-      <div className="badge">
-        {usuarioLogado
-          ? `Olá! Bem-vindo(a), ${usuarioLogado}`
-          : "Conheça a nossa solução"}
-      </div>
+
+      {usuarioLogado && (
+          <div className="badge">Olá! Bem-vindo(a), {usuarioLogado}</div>
+      )}
 
       <h1 className="principal-titulo">
         titulo example <br />

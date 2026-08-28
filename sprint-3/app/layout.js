@@ -1,8 +1,9 @@
 import "./globals.css";
 
 export const metadata = {
-  title: "QuoteKit - Win more deals",
-  description: "Create, send, and track stunning proposals that close.",
+  title: "Raluguva",
+  description:
+    "É como se os alertas da vida real ganhassem legendas visuais instantâneas.",
 };
 
 export default function RootLayout({ children }) {
