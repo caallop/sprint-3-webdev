@@ -1,6 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
 
+Math.handle = function (min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
 export default function Main() {
   const [usuarioLogado, setUsuarioLogado] = useState("");
 
@@ -26,6 +30,34 @@ export default function Main() {
     const flashImg = document.querySelector(".flash img");
     const timer = document.querySelector(".timer");
     const foto = document.querySelector(".foto");
+    let intervaloDecibeis;
+    let timeoutDecibeis;
+    let medicaoAtiva = false;
+
+    function pararMedicao() {
+      clearInterval(intervaloDecibeis);
+      clearTimeout(timeoutDecibeis);
+
+      intervaloDecibeis = null;
+      timeoutDecibeis = null;
+      medicaoAtiva = false;
+    }
+
+    function iniciarMedicao() {
+      if (medicaoAtiva) return;
+
+      pararMedicao();
+      medicaoAtiva = true;
+
+      intervaloDecibeis = setInterval(() => {
+        const decibeis = Math.handle(35, 90);
+        criarNotificacao(`${decibeis} dB`);
+      }, 500);
+
+      timeoutDecibeis = setTimeout(() => {
+        pararMedicao();
+      }, 10000);
+    }
 
     if (info) info.style.display = "none";
 
@@ -45,9 +77,27 @@ export default function Main() {
         imgAcessibilidade.src = "/img_sp2/roda_acessibilidade.png";
         imgAcessibilidade.alt = "Acessibilidade Som";
         imgAcessibilidade.classList.add("elemento-acessibilidade");
+        imgAcessibilidade.addEventListener("mousemove", (evento) => {
+          const area = imgAcessibilidade.getBoundingClientRect();
+
+          const x = (evento.clientX - area.left) / area.width;
+          const y = (evento.clientY - area.top) / area.height;
+
+          const estaNaGota = x > 0.2 && x < 0.48 && y > 0.2 && y < 0.6;
+          const estaNoPassarinho = x > 0.55 && x < 0.8 && y > 0.1 && y < 0.55;
+
+          if (estaNaGota || estaNoPassarinho) {
+            iniciarMedicao();
+          } else {
+            pararMedicao();
+          }
+        });
+
+        imgAcessibilidade.addEventListener("mouseleave", pararMedicao);
         containerCelular.appendChild(imgAcessibilidade);
         criarNotificacao("Modo acessibilidade ativado");
       } else {
+        pararMedicao();
         imgAcessibilidade.remove();
         criarNotificacao("Modo acessibilidade desativado");
       }
@@ -97,6 +147,7 @@ export default function Main() {
     }
 
     return () => {
+      pararMedicao();
       if (infoBotao) infoBotao.removeEventListener("click", handleInfoClick);
       if (acessibilidade)
         acessibilidade.removeEventListener("click", handleAcessibilidadeClick);
@@ -124,7 +175,6 @@ export default function Main() {
           seu celular ou óculos inteligente.
         </p>
       </div>
-
       <div className="image-wrapper">
         <div className="moldura-celular-codigo">
           <div className="tela-celular">
