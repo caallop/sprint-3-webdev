@@ -1,9 +1,7 @@
-@import "./styles/global.css";
+@import "./styles/all.css";
 @import "./styles/nav.css";
 @import "./styles/main.css";
 @import "./styles/camera.css";
 @import "./styles/footer.css";
 @import "./styles/botao.css";
 @import "./styles/login.css";
-
-

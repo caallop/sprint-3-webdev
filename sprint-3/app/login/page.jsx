@@ -45,7 +45,7 @@ export default function LoginPage() {
 
             <main className="container">
                 <div className="login container">
-                    <h1>Login - Raluguva</h1>
+                    <h1>LOGIN</h1>
 
                     <form className="entrada" onSubmit={handleLogin}>
                         <div>

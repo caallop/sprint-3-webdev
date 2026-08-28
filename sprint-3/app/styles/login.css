@@ -3,31 +3,87 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-
-  padding: 30px;
-  gap: 50px;
 }
 
-.historico-login {
-  margin-top: 3rem;
-  width: 100%;
-  max-width: 350px;
+.login h1{
+  padding: 3%;
+  font-size: 4rem;
+
+  font-family:Georgia, 'Times New Roman', Times, serif;
+  font-style: oblique;
 }
 
 .entrada {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 3%;
+  flex-direction: column; 
+  width: 100%;
+  max-width: 350px; 
+  gap: 20px; 
+  background-color: #ffffff;
+  padding: 30px;
+  border: 1px solid var(--border-color, #e2e8f0);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+.entrada > div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px; 
 }
 
 .entrada label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #334155;
+  text-align: left;
+}
+
+.entrada input {
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #1e293b;
+  background-color: #f8fafc;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.entrada input:focus {
+  border-color: var(--primary-color, #3b82f6);
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2); 
+}
+
+.entrada button {
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background-color: var(--primary-color, #3b82f6);
+  color: white;
+  border: none;
   border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.entrada button:hover {
+  background-color: var(--primary-hover, #2563eb);
+}
+
+.entrada button:active {
+  transform: scale(0.98); 
+}
+
+
+.historico-login {
+  padding: 2%;
 }
 
 .historico-titulo {
@@ -38,15 +94,9 @@
   font-weight: 500;
 }
 
-.historico-lista {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
 .historico-item {
   display: flex;
-  justify-content: space-between;
+  gap: 4rem;
   align-items: center;
   padding: 0.75rem 1rem;
   background-color: #f8fafc;
@@ -70,23 +120,4 @@
 .btn-apagar:hover {
   background-color: #ef4444;
   color: white;
-}
-
-.entrada button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0.8rem;
-  margin-top: 1rem;
-  margin-left: 0.5rem;
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: background-color 0.2s;
-}
-
-.entrada button:hover {
-  background-color: var(--primary-hover);
 }
