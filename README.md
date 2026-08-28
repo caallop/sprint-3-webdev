@@ -85,10 +85,10 @@ A Inteligência Artificial foi usada, principalmente para resolver problemas e t
 
 Repositório do projeto:
 
-[GitHub](https://github.com/caallop/sprint-3-webdev)
+(https://github.com/caallop/sprint-3-webdev)
 
 ## Deploy
 
 Aplicação publicada na Vercel:
 
-[Vercel](https://sprint-3-webdev-nine.vercel.app/)
+(https://sprint-3-webdev-nine.vercel.app/)
