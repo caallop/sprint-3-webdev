@@ -5,35 +5,27 @@ export default function Main() {
   const [usuarioLogado, setUsuarioLogado] = useState("");
 
   useEffect(() => {
-    // Isolamos a leitura do Storage em uma função.
-    // Isso ajuda o React a entender que a ação está encapsulada e não
-    // vai causar um loop de atualizações na tela.
     const carregarDadosDoNavegador = () => {
       const emailSalvo = localStorage.getItem("raluguva_email");
-
       if (emailSalvo) {
         const nomeCurto = emailSalvo.split("@")[0];
         setUsuarioLogado(nomeCurto);
       }
     };
-
     carregarDadosDoNavegador();
   }, []);
 
   useEffect(() => {
+    const containerCelular = document.querySelector(".tela-celular");
     const infoBotao = document.querySelector(".info_botao");
-    const info = document.querySelector(".info");
+    const info = document.querySelector(".painel-informacoes");
+    const acessibilidade = document.querySelector("button[aria-label='acessibilidade']");
     const flash = document.querySelector(".flash");
     const flashImg = document.querySelector(".flash img");
     const timer = document.querySelector(".timer");
     const foto = document.querySelector(".foto");
 
     if (info) info.style.display = "none";
-
-    const tirarFoto = () => {
-      alert("Foto tirada!");
-      criarNotificacao("Foto salva na galeria");
-    };
 
     const handleInfoClick = () => {
       if (info) {
@@ -42,20 +34,38 @@ export default function Main() {
     };
     if (infoBotao) infoBotao.addEventListener("click", handleInfoClick);
 
-    const handleFlashClick = () => {
-      document.body.classList.toggle("flashAtivo");
-      if (document.body.classList.contains("flashAtivo")) {
-        if (flashImg) flashImg.src = "/img_sp2/flash.png";
-        alert("Flash ativado!");
+    
+    const handleAcessibilidadeClick = () => {
+      let imgAcessibilidade = containerCelular.querySelector(".elemento-acessibilidade");
+      if (!imgAcessibilidade) {
+        imgAcessibilidade = document.createElement("img");
+        imgAcessibilidade.src = "/img_sp2/roda_acessibilidade.png";
+        imgAcessibilidade.alt = "Acessibilidade Som";
+        imgAcessibilidade.classList.add("elemento-acessibilidade");
+        containerCelular.appendChild(imgAcessibilidade);
+        criarNotificacao("Modo acessibilidade ativado");
       } else {
-        if (flashImg) flashImg.src = "/img_sp2/sem_flash.png";
-        alert("Flash desativado!");
+        imgAcessibilidade.remove();
+        criarNotificacao("Modo acessibilidade desativado");
+      }
+    };
+    if (acessibilidade) acessibilidade.addEventListener("click", handleAcessibilidadeClick);
+
+    const handleFlashClick = () => {
+      if (containerCelular) {
+        containerCelular.classList.toggle("flashAtivo");
+        if (containerCelular.classList.contains("flashAtivo")) {
+          if (flashImg) flashImg.src = "/img_sp2/flash.png";
+        } else {
+          if (flashImg) flashImg.src = "/img_sp2/sem_flash.png";
+        }
       }
     };
     if (flash) flash.addEventListener("click", handleFlashClick);
 
+   
     const handleTimerClick = () => {
-      alert("Foto será tirada em 3 segundos!");
+      criarNotificacao("Foto será tirada em 3 segundos!");
       setTimeout(() => {
         tirarFoto();
       }, 3000);
@@ -67,11 +77,17 @@ export default function Main() {
     };
     if (foto) foto.addEventListener("click", handleFotoClick);
 
+    function tirarFoto() {
+      criarNotificacao("Foto salva na galeria");
+    }
+
     function criarNotificacao(texto) {
       const notificacao = document.createElement("div");
       notificacao.classList.add("notificacao");
       notificacao.innerText = texto;
-      document.body.appendChild(notificacao);
+      if (containerCelular) {
+        containerCelular.appendChild(notificacao);
+      }
       setTimeout(() => {
         notificacao.remove();
       }, 3000);
@@ -79,6 +95,7 @@ export default function Main() {
 
     return () => {
       if (infoBotao) infoBotao.removeEventListener("click", handleInfoClick);
+      if (acessibilidade) acessibilidade.removeEventListener("click", handleAcessibilidadeClick);
       if (flash) flash.removeEventListener("click", handleFlashClick);
       if (timer) timer.removeEventListener("click", handleTimerClick);
       if (foto) foto.removeEventListener("click", handleFotoClick);
@@ -87,7 +104,6 @@ export default function Main() {
 
   return (
     <main className="principal container">
-      {/* 4. Renderizamos o nome dinamicamente no Badge */}
       <div className="badge">
         {usuarioLogado
           ? `Olá! Bem-vindo(a), ${usuarioLogado}`
@@ -112,11 +128,11 @@ export default function Main() {
 
       <div className="image-wrapper">
         <div className="moldura-celular-codigo">
-          <div className="pagina-antiga">
-            <header className="header-antigo">
-              <div className="opcoes">
+          <div className="tela-celular">
+            <header className="topo-celular">
+              <div className="opcoes-celular">
                 <button className="flash" aria-label="ativar o flash">
-                  <img src="/img_sp2/flash.png" alt="flash" />
+                  <img src="/img_sp2/sem_flash.png" alt="flash" />
                 </button>
                 <button className="timer" aria-label="ativar o timer">
                   <img src="/img_sp2/relogio.png" alt="relogio" />
@@ -127,36 +143,36 @@ export default function Main() {
               </div>
             </header>
 
-            <div className="info">
+            <div className="painel-informacoes">
               <div>
-                <p>flash:</p>
-                <p> Ativa a função de flash da câmera.</p>
+                <img src="/img_sp2/flash.png" alt="flash" width="20" />
+                <p>Ativa a função de flash da câmera.</p>
               </div>
               <div>
-                <p>temporizador:</p>
-                <p> Ativa um timer de até três segundos.</p>
+                <img src="/img_sp2/relogio_3.png" alt="timer" width="20" />
+                <p>Ativa um timer de até três segundos.</p>
               </div>
               <div>
-                <p>olho:</p>
-                <p> Ativa a função de acessibilidade para ver sons.</p>
+                <img src="/img_sp2/acessibilidade.png" alt="olho" width="20" />
+                <p>Ativa a função de acessibilidade para ver sons.</p>
               </div>
               <div>
-                <p>galeria:</p>
-                <p> vê as fotos</p>
+                <img src="/img_sp2/galeria.png" alt="galeria" width="20" />
+                <p>Vê a galeria.</p>
               </div>
             </div>
 
-            <footer className="footer-antigo">
-              <div className="botoes-inferiores">
-                <button className="botao-baixo" aria-label="acessibilidade">
+            <footer className="rodape-celular">
+              <div className="botoes-inferiores-celular">
+                <button className="botao-acao-baixo" aria-label="acessibilidade">
                   <img src="/img_sp2/acessibilidade.png" alt="acessibilidade" />
                 </button>
 
-                <button className="foto botao-baixo" aria-label="tirar foto">
+                <button className="foto botao-acao-baixo" aria-label="tirar foto">
                   <img src="/img_sp2/botao_foto.png" alt="tirar foto" />
                 </button>
 
-                <button className="botao-baixo" aria-label="galeria">
+                <button className="botao-acao-baixo" aria-label="galeria">
                   <img src="/img_sp2/galeria.png" alt="galeria" />
                 </button>
               </div>

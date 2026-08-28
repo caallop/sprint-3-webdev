@@ -194,6 +194,8 @@ footer {
   font-weight: 700;
 }
 
+/* AQUI VAI O CSS DO CELULAR */
+
 .moldura-celular-codigo {
   width: 600px;
   height: 340px;
@@ -208,8 +210,7 @@ footer {
   overflow: hidden;
 }
 
-
-.pagina-antiga {
+.tela-celular {
   width: 100%;
   height: 100%;
   display: flex;
@@ -217,18 +218,56 @@ footer {
   justify-content: space-between;
   padding: 20px;
   background: rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.tela-celular.flashAtivo::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(186, 187, 183, 0.199);
+  z-index: 40;
+  pointer-events: none;
 }
 
 
+.notificacao {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 15px;
+  font-size: 13px;
+  z-index: 99;
+  pointer-events: none;
+  white-space: nowrap;
+}
 
-.header-antigo {
+.elemento-acessibilidade {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  pointer-events: none;
+  z-index: 35;
+}
+
+.topo-celular {
   display: flex;
   width: 100%;
   justify-content: space-between;
   padding: 0 10px;
 }
 
-.header-antigo .opcoes {
+.topo-celular .opcoes-celular {
   background: transparent;
   border: none;
   box-shadow: none;
@@ -239,7 +278,7 @@ footer {
   width: 100%;
 }
 
-.header-antigo button {
+.topo-celular button {
   width: 34px;
   height: 34px;
   padding: 4px;
@@ -253,27 +292,54 @@ footer {
   transition: transform 0.2s, background 0.2s;
 }
 
-.header-antigo button:hover {
+.topo-celular button:hover {
   transform: scale(1.1);
   background: white;
 }
 
-.header-antigo img {
+.topo-celular img {
   width: 18px;
   height: 18px;
-  object-fit: contain;
 }
 
-.info {
-  background-color: #ffffff;
-  padding: 10px;
-  margin: 10px;
-  border-radius: 8px;
-  gap: 10px;
-  padding: 20px;
+.painel-informacoes {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); 
+  width: 62%; 
+  height: 52%; 
+  background-color: #b8b5b5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  gap: 12px;
+  padding: 15px;
+  z-index: 50;
 }
 
-.footer-antigo .botoes-inferiores {
+.painel-informacoes div {
+  background-color: #d1d1d1;
+  padding: 10px 1px;
+  border-radius: 10px;
+  width: 22%;
+  height: 75%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  font-size: 10px;
+  color: #000;
+}
+
+.painel-informacoes img, 
+.painel-informacoes p {
+  margin-bottom: 5px;
+}
+
+.rodape-celular .botoes-inferiores-celular {
   background: transparent;
   border: none;
   box-shadow: none;
@@ -283,7 +349,7 @@ footer {
   gap: 16px;
 }
 
-.footer-antigo .botoes-inferiores .botao-baixo {
+.rodape-celular .botoes-inferiores-celular .botao-acao-baixo {
   width: 34px;
   height: 34px;
   padding: 4px;
@@ -297,18 +363,16 @@ footer {
   transition: transform 0.2s, background 0.2s;
 }
 
-.footer-antigo .botoes-inferiores .botao-baixo:hover {
+.rodape-celular .botoes-inferiores-celular .botao-acao-baixo:hover {
   transform: scale(1.1);
   background: white;
 }
 
-.footer-antigo .botoes-inferiores .botao-baixo img {
+.rodape-celular .botoes-inferiores-celular .botao-acao-baixo img {
   width: 18px;
   height: 18px;
   object-fit: contain;
 }
-
-
 
 
 /*AQUI VAI CSS DAS OUTRAS PAGINAS*/
